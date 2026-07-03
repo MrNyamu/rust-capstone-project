@@ -50,10 +50,7 @@ fn ensure_wallet(rpc: &Client, name: &str) -> bitcoincore_rpc::Result<()> {
         return Ok(());
     }
     // Not loaded. Try to create it; if it already exists on disk, load it instead.
-    if rpc
-        .create_wallet(name, None, None, None, None)
-        .is_err()
-    {
+    if rpc.create_wallet(name, None, None, None, None).is_err() {
         let _ = rpc.load_wallet(name);
     }
     Ok(())
